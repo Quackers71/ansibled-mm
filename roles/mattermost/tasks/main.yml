@@ -1,0 +1,38 @@
+- name: create mattermost directory
+  file:
+    path: /mattermost
+    state: directory
+    mode: '0744'
+
+- name: copy the mattermost files
+  copy:
+    src: roles/mattermost/files/
+    dest: /mattermost
+    directory_mode: yes
+    mode: '0744'
+
+- name: copy the postgres files 
+  copy:
+    src: roles/postgres/files/
+    dest: /mattermost
+    directory_mode: yes
+    mode: '0744'
+
+- name: copy the docker-compose.yml file
+  copy:
+    src: ./docker-compose.yml
+    dest: /mattermost
+    directory_mode: yes
+    mode: '0744'
+
+# - docker_service:
+#     project_src: compose
+#     build: yes
+#     stopped: true
+#   register: output
+
+# - name: run docker-compose build
+#   docker_compose:
+#     project_src: /mattermost
+#     build: yes
+#     state: present

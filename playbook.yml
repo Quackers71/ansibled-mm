@@ -1,6 +1,6 @@
 ---
 - name: Gather facts on all hosts
-  hosts: mm
+  hosts: mattermost
   tasks:
   - setup:
     gather_subnet:
@@ -9,25 +9,17 @@
   - always
 
 - name: Deploys docker, docker-compose & dependencies
-  hosts: mm
+  hosts: mattermost
   become: yes
   roles:
     - role: docker
   tags:
     - docker
   
-# - name: Deploys Postgres
-#   hosts: mm
-#   become: yes
-#   roles: 
-#     - role: postgres
-#   tags:
-#    - postgres
-
-# - name: Deploys mm
-#   hosts: mm
-#   become: yes
-#   roles:
-#     - role: mm
-#   tags:
-#     - mm
+- name: Deploys Postgres and Mattermost
+  hosts: mattermost
+  become: yes
+  roles: 
+    - role: mattermost
+  tags:
+   - mattermost
