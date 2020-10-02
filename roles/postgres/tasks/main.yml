@@ -11,11 +11,6 @@
     directory_mode: yes
     mode: '0744'
 
-- name: jinja template
-  template:
-    src: templates/postgres/docker-compose.yml
-    dest: /postgres/docker-compose.yml
-
 - name: run docker-compose build for postgres db
   docker_compose:
     project_src: /postgres

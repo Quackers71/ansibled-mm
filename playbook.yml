@@ -1,6 +1,6 @@
 ---
 - name: Gather facts on all hosts
-hosts: mattermost-ansible
+hosts: all
 tasks:
 - setup:
   gather_subnet:
