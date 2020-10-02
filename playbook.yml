@@ -1,0 +1,33 @@
+---
+- name: Gather facts on all hosts
+hosts: mattermost-ansible
+tasks:
+- setup:
+  gather_subnet:
+    - "all"
+tags:
+  - always
+
+- name: Deploys docker, docker-compose & dependencies
+  hosts: mm
+  become: yes
+  roles:
+    - role: docker
+  tags:
+    - docker
+  
+- name: Deploys Postgres
+  hosts: mm
+  become: yes
+  roles: 
+    - role: postgres
+  tags:
+   - postgres
+
+- name: Deploys mm
+  hosts: mm
+  become: yes
+  roles:
+    - role: mm
+  tags:
+    - mm
