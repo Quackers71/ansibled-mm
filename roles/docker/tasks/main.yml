@@ -1,13 +1,5 @@
-- name: Install pip
-  yum:
-    name: python-pip
-    state: present
-
-- name: Install pip dependencies
-  include: roles/docker/tasks/install-pip-dependencies.yml
-
 - name: Install docker with install-docker file
-  include: roles/docker/tasks/install-docker.yml
+  include: install-docker.yml
 
 - name: Install docker-compose with other install-dockercompose file
-  include: roles/docker/tasks/install-dockercompose.yml
+  include: install-dockercompose.yml

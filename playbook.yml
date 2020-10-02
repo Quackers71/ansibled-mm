@@ -1,11 +1,11 @@
 ---
 - name: Gather facts on all hosts
-hosts: all
-tasks:
-- setup:
-  gather_subnet:
-    - "all"
-tags:
+  hosts: mm
+  tasks:
+  - setup:
+    gather_subnet:
+      - "all"
+  tags:
   - always
 
 - name: Deploys docker, docker-compose & dependencies
@@ -16,18 +16,18 @@ tags:
   tags:
     - docker
   
-- name: Deploys Postgres
-  hosts: mm
-  become: yes
-  roles: 
-    - role: postgres
-  tags:
-   - postgres
+# - name: Deploys Postgres
+#   hosts: mm
+#   become: yes
+#   roles: 
+#     - role: postgres
+#   tags:
+#    - postgres
 
-- name: Deploys mm
-  hosts: mm
-  become: yes
-  roles:
-    - role: mm
-  tags:
-    - mm
+# - name: Deploys mm
+#   hosts: mm
+#   become: yes
+#   roles:
+#     - role: mm
+#   tags:
+#     - mm
