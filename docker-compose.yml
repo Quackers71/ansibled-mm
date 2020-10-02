@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-
   db:
     build: db
     read_only: true
     restart: unless-stopped
+    privileged: true
     volumes:
       - ./volumes/db/var/lib/postgresql/data:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
@@ -28,6 +28,7 @@ services:
       #   - PUID=1000
       #   - PGID=1000
     restart: unless-stopped
+    privileged: true
     volumes:
       - ./volumes/app/mattermost/config:/mattermost/config:rw
       - ./volumes/app/mattermost/data:/mattermost/data:rw
@@ -58,6 +59,7 @@ services:
       - "443:443"
     read_only: true
     restart: unless-stopped
+    privileged: true
     volumes:
       # This directory must have cert files if you want to enable SSL
       - ./volumes/web/cert:/cert:ro
