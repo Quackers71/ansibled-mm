@@ -1,0 +1,9 @@
+# avoid committing playbook retry files and swap files
+*.retry
+*.swp
+
+# avoid commiting docker repos that should be pulled down
+docker/*
+
+# Generated data
+volumes

@@ -1,0 +1,10 @@
+- name: Check if Docker Compose is installed
+  command: docker-compose --version
+  register: docker_compose_check
+  ignore_errors: yes
+
+- name: Download and install Docker Compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64
+    dest: /usr/bin/docker-compose
+    mode: 0755

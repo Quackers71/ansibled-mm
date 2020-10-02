@@ -1,0 +1,23 @@
+- name: create mattermost directory
+  file:
+    path: /mattermost
+    state: directory
+    mode: '0744'
+
+- name: copy the files
+  copy:
+    src: roles/mattermost/files/
+    dest: /mattermost
+    directory_mode: yes
+    mode: '0744'
+
+- name: jinja template
+  template:
+    src: templates/mattermost/docker-compose.yml
+    dest: /mattermost/docker-compose.yml
+
+- name: run docker-compose build
+  docker_compose:
+    project_src: /mattermost
+    build: yes
+    state: present
