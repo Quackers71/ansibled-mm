@@ -6,7 +6,7 @@
 
 - name: copy the files
   copy:
-    src: roles/mattermost/files/
+    src: roles/mm/files/
     dest: /mattermost
     directory_mode: yes
     mode: '0744'
